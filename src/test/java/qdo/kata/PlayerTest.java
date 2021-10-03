@@ -32,7 +32,7 @@ class PlayerTest {
 	@Test
 	public void shouldReturnThreeOfAKindRanking(){
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.THREE_OF_A_KIND);
-		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().winningCard().value()).isEqualTo(5);
+		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().winningCard().value()).isEqualTo(2);
 	}
 
 	private List<Card> createCards(String data){

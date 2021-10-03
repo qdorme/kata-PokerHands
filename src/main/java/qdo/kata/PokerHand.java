@@ -24,7 +24,13 @@ public enum PokerHand {
 					pairedCards.get(1).getValue().get(0));
 		}
 	}),
-	THREE_OF_A_KIND(player->{});
+	THREE_OF_A_KIND(player->{
+		List<Map.Entry<Integer, List<Card>>> pairedCards = player.hand().stream().collect(Collectors.groupingBy(Card::value)).entrySet().stream().filter(
+				group -> group.getValue().size() == 3).collect(Collectors.toList());
+		if (pairedCards.size() == 1) {
+			player.setRank("THREE_OF_A_KIND").setWinningCard(pairedCards.get(0).getValue().get(0));
+		}
+	});
 
 	private RankingHands<Player> rankingHands;
 
