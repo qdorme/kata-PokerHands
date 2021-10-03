@@ -41,7 +41,8 @@ public enum PokerHand {
 		if(player.hand().stream().collect(Collectors.groupingBy(Card::suit)).size() == 1){
 			player.setRank("FLUSH").setWinningCard(player.hand().get(4));
 		}
-	});
+	}),
+	FULL_HOUSE(player->{});
 
 	private RankingHands<Player> rankingHands;
 

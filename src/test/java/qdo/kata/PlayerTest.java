@@ -39,8 +39,13 @@ class PlayerTest {
 	}
 	@Test
 	public void shouldReturnFlushRanking(){
-		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FLUSH);
-		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().winningCard().value()).isEqualTo(6);
+		assertThat(new Player("Black", createCards("AH 4H 5H 6H 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FLUSH);
+		assertThat(new Player("Black", createCards("AH 4H 5H 6H 2H")).processRanking().winningCard().value()).isEqualTo(14);
+	}
+	@Test
+	public void shouldReturnFullHouseRanking(){
+		assertThat(new Player("Black", createCards("3H 2H 3S 3D 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FULL_HOUSE);
+		assertThat(new Player("Black", createCards("3H 2H 3S 3D 2H")).processRanking().winningCard().value()).isEqualTo(6);
 	}
 
 	private List<Card> createCards(String data){
