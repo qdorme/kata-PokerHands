@@ -35,6 +35,12 @@ class PlayerTest {
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().winningCard().value()).isEqualTo(2);
 	}
 
+	@Test
+	public void shouldReturnStraightRanking(){
+		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.STRAIGHT);
+		assertThat(new Player("Black", createCards("3H 4C 5C 6H 2S")).processRanking().winningCard().value()).isEqualTo(6);
+	}
+
 	private List<Card> createCards(String data){
 		Matcher matcher = cardsPattern.matcher(data);
 		if(matcher.matches())
