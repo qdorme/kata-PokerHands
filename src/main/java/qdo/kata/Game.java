@@ -42,4 +42,8 @@ public class Game {
 	public List<Player> players() {
 		return players;
 	}
+
+	public String processRanking() {
+		return null;
+	}
 }
