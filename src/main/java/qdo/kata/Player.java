@@ -31,7 +31,7 @@ public class Player {
 	public Player processRanking(){
 		if(rank == null)
 			PokerHand.PAIR.testPlayerHand(this);
-		else if(rank == null)
+		if(rank == null)
 			PokerHand.HIGH_CARD.testPlayerHand(this);
 		return this;
 	}

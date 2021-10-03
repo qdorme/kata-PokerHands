@@ -14,7 +14,8 @@ public enum PokerHand {
 		if(!pairedCards.isEmpty() && pairedCards.get(0).getValue().size() == 2){
 			player.setRank("PAIR").setWinningCard(pairedCards.get(0).getValue().get(0));
 		}
-	})
+	}),
+	TWO_PAIR(player->{})
 	;
 
 	private RankingHands<Player> rankingHands;
