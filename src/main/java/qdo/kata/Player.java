@@ -19,4 +19,8 @@ public class Player {
 	public List<Card> hand() {
 		return hand;
 	}
+
+	public PokerHand rank() {
+		return null;
+	}
 }
