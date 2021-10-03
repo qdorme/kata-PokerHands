@@ -22,7 +22,7 @@ public class Game {
 		List<Card> secondPlayerCards = Arrays.asList(Card.from(settingsEntries.group(8)), Card.from(settingsEntries.group(9)),
 				Card.from(settingsEntries.group(10)), Card.from(settingsEntries.group(11)), Card.from(settingsEntries.group(12)));
 		verifyThatACardIsPickedOnlyOnce(firstPlayerCards, secondPlayerCards);
-		return null;
+		return new Game();
 	}
 
 	private static void verifyThatACardIsPickedOnlyOnce(List<Card> firstPlayerCards, List<Card> secondPlayerCards) {
