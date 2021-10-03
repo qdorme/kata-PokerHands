@@ -2,6 +2,7 @@ package qdo.kata;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,7 +43,14 @@ public enum PokerHand {
 			player.setRank("FLUSH").setWinningCard(player.hand().get(4));
 		}
 	}),
-	FULL_HOUSE(player->{});
+	FULL_HOUSE(player->{
+		Set<Map.Entry<Integer, List<Card>>> pairedCards = player.hand().stream().collect(Collectors.groupingBy(Card::value)).entrySet();
+		if (pairedCards.stream().filter(group -> group.getValue().size() == 2).count() == 1 && pairedCards.stream().filter(group -> group.getValue().size() == 3)
+				.count() == 1){
+			player.setRank("FULL_HOUSE").setWinningCard( pairedCards.stream().filter(group -> group.getValue().size() == 3).findFirst().get().getValue().get(0));
+		}
+	}),
+	FOUR_OF_A_KIND(player->{});
 
 	private RankingHands<Player> rankingHands;
 

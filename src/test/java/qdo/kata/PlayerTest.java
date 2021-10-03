@@ -29,8 +29,8 @@ class PlayerTest {
 	}
 	@Test
 	public void shouldReturnThreeOfAKindRanking(){
-		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.THREE_OF_A_KIND);
-		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().winningCard().value()).isEqualTo(2);
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.THREE_OF_A_KIND);
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 2S")).processRanking().winningCard().value()).isEqualTo(2);
 	}
 	@Test
 	public void shouldReturnStraightRanking(){
@@ -45,7 +45,12 @@ class PlayerTest {
 	@Test
 	public void shouldReturnFullHouseRanking(){
 		assertThat(new Player("Black", createCards("3H 2H 3S 3D 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FULL_HOUSE);
-		assertThat(new Player("Black", createCards("3H 2H 3S 3D 2H")).processRanking().winningCard().value()).isEqualTo(6);
+		assertThat(new Player("Black", createCards("3H 2H 3S 3D 2H")).processRanking().winningCard().value()).isEqualTo(3);
+	}
+	@Test
+	public void shouldReturnFourOfAKindRanking(){
+		assertThat(new Player("Black", createCards("3H 3C 3S 3D 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FOUR_OF_A_KIND);
+		assertThat(new Player("Black", createCards("3H 3C 3S 3D 2H")).processRanking().winningCard().value()).isEqualTo(3);
 	}
 
 	private List<Card> createCards(String data){

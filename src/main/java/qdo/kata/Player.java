@@ -30,6 +30,8 @@ public class Player {
 
 	public Player processRanking(){
 		if(rank == null)
+			PokerHand.FULL_HOUSE.testPlayerHand(this);
+		if(rank == null)
 			PokerHand.FLUSH.testPlayerHand(this);
 		if(rank == null)
 			PokerHand.STRAIGHT.testPlayerHand(this);
