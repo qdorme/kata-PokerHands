@@ -8,6 +8,7 @@ public class Player {
 	private final List<Card> hand;
 	private PokerHand rank;
 	private Card winningCard;
+	private Card secondCard;
 
 	public Player(String name, List<Card> hand) {
 		this.name = name;
@@ -61,5 +62,14 @@ public class Player {
 
 	public Card winningCard() {
 		return winningCard;
+	}
+
+	public Card secondCard() {
+		return secondCard;
+	}
+
+	public Player setSecondCard(Card secondCard) {
+		this.secondCard = secondCard;
+		return this;
 	}
 }

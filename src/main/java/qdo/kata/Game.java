@@ -44,6 +44,14 @@ public class Game {
 	}
 
 	public String processRanking() {
-		return null;
+		players.forEach(player -> player.processRanking());
+		if(players.get(0).rank().compareTo(players.get(1).rank()) == 0
+				&& players.get(0).winningCard().value() == players.get(1).winningCard().value())
+			return "Tie.";
+		Player winner = players.get(0).rank().compareTo(players.get(1).rank()) > 0 ? players.get(0) : players.get(1);
+		if(winner.secondCard() == null)
+			return String.format("%s wins. - with %s: %s",winner.name(),winner.rank().littleName(),winner.winningCard().description());
+		else
+			return String.format("%s wins. - with %s: %s over %S",winner.name(),winner.rank().littleName(),winner.winningCard().description(),winner.secondCard().description());
 	}
 }

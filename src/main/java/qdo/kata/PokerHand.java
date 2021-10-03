@@ -1,6 +1,7 @@
 package qdo.kata;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,9 +22,13 @@ public enum PokerHand {
 		List<Map.Entry<Integer, List<Card>>> pairedCards = player.hand().stream().collect(Collectors.groupingBy(Card::value)).entrySet().stream().filter(
 				group -> group.getValue().size() == 2).collect(Collectors.toList());
 		if (pairedCards.size() == 2) {
-			player.setRank("TWO_PAIR").setWinningCard(pairedCards.get(0).getValue().get(0).compareTo(pairedCards.get(1).getValue().get(0)) == 1 ?
-					pairedCards.get(0).getValue().get(0) :
-					pairedCards.get(1).getValue().get(0));
+			player.setRank("TWO_PAIR")
+					.setWinningCard(pairedCards.get(0).getValue().get(0).compareTo(pairedCards.get(1).getValue().get(0)) > 0 ?
+						pairedCards.get(0).getValue().get(0) :
+						pairedCards.get(1).getValue().get(0))
+					.setSecondCard(pairedCards.get(0).getValue().get(0).compareTo(pairedCards.get(1).getValue().get(0)) < 0 ?
+							pairedCards.get(0).getValue().get(0) :
+							pairedCards.get(1).getValue().get(0));
 		}
 	}),
 	THREE_OF_A_KIND(player->{
@@ -47,7 +52,8 @@ public enum PokerHand {
 		Set<Map.Entry<Integer, List<Card>>> pairedCards = player.hand().stream().collect(Collectors.groupingBy(Card::value)).entrySet();
 		if (pairedCards.stream().filter(group -> group.getValue().size() == 2).count() == 1 && pairedCards.stream().filter(group -> group.getValue().size() == 3)
 				.count() == 1){
-			player.setRank("FULL_HOUSE").setWinningCard( pairedCards.stream().filter(group -> group.getValue().size() == 3).findFirst().get().getValue().get(0));
+			player.setRank("FULL_HOUSE").setWinningCard( pairedCards.stream().filter(group -> group.getValue().size() == 3).findFirst().get().getValue().get(0))
+					.setSecondCard(pairedCards.stream().filter(group -> group.getValue().size() == 2).findFirst().get().getValue().get(0));
 		}
 	}),
 	FOUR_OF_A_KIND(player->{
@@ -72,5 +78,9 @@ public enum PokerHand {
 
 	public void testPlayerHand(Player player) {
 		rankingHands.apply(player);
+	}
+
+	public String littleName(){
+		return this.name().toLowerCase(Locale.ENGLISH).replaceAll("_"," ");
 	}
 }
