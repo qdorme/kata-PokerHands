@@ -16,5 +16,6 @@ class GameTest {
 	@Test
 	public void shouldCreateAGame(){
 		assertThat(Game.from("Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH")).isInstanceOf(Game.class);
+		assertThat(Game.from("Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH").players().size()).isEqualTo(2);
 	}
 }
