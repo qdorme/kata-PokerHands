@@ -9,5 +9,6 @@ class CardTest {
 	@Test
 	public void shouldCreateACard(){
 		assertThat(Card.from("2C")).isInstanceOf(Card.class);
+		assertThat(Card.from("2c")).isInstanceOf(Card.class);
 	}
 }
