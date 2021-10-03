@@ -57,7 +57,12 @@ public enum PokerHand {
 			player.setRank("FOUR_OF_A_KIND").setWinningCard(pairedCards.get(0).getValue().get(0));
 		}
 	}),
-	STRAIGHT_FLUSH(player->{});
+	STRAIGHT_FLUSH(player->{
+		if(player.hand().stream().collect(Collectors.groupingBy(Card::suit)).size() == 1
+				&& IntStream.range(0, 4).map(index -> player.hand().get(index + 1).value() - player.hand().get(index).value()).distinct().sum() == 1){
+			player.setRank("STRAIGHT_FLUSH").setWinningCard(player.hand().get(4));
+		}
+	});
 
 	private RankingHands<Player> rankingHands;
 
