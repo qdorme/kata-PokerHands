@@ -3,6 +3,7 @@ package qdo.kata;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public enum PokerHand {
 	HIGH_CARD(player -> {
@@ -31,7 +32,11 @@ public enum PokerHand {
 			player.setRank("THREE_OF_A_KIND").setWinningCard(pairedCards.get(0).getValue().get(0));
 		}
 	}),
-	STRAIGHT(player->{});
+	STRAIGHT(player->{
+		if(	IntStream.range(0, 4).map(index -> player.hand().get(index + 1).value() - player.hand().get(index).value()).distinct().sum() == 1){
+			player.setRank("STRAIGHT").setWinningCard(player.hand().get(4));
+		}
+	});
 
 	private RankingHands<Player> rankingHands;
 

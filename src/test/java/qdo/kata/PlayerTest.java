@@ -14,8 +14,8 @@ class PlayerTest {
 
 	@Test
 	public void shouldReturnHighestCard(){
-		assertThat(new Player("Black", createCards("2H 3C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
-		assertThat(new Player("Black", createCards("2H 3C 5C 6H 4H")).processRanking().winningCard()).isEqualByComparingTo(Card.H6);
+		assertThat(new Player("Black", createCards("2H 3C 7C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
+		assertThat(new Player("Black", createCards("2H 3C 7C 6H 4H")).processRanking().winningCard()).isEqualByComparingTo(Card.C7);
 	}
 	@Test
 	public void shouldReturnPairRanking(){
@@ -37,7 +37,7 @@ class PlayerTest {
 
 	@Test
 	public void shouldReturnStraightRanking(){
-		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.STRAIGHT);
+		assertThat(new Player("Black", createCards("3H 4C 5C 6H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.STRAIGHT);
 		assertThat(new Player("Black", createCards("3H 4C 5C 6H 2S")).processRanking().winningCard().value()).isEqualTo(6);
 	}
 
