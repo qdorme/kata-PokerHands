@@ -30,6 +30,8 @@ public class Player {
 
 	public Player processRanking(){
 		if(rank == null)
+			PokerHand.FLUSH.testPlayerHand(this);
+		if(rank == null)
 			PokerHand.STRAIGHT.testPlayerHand(this);
 		if(rank == null)
 			PokerHand.THREE_OF_A_KIND.testPlayerHand(this);

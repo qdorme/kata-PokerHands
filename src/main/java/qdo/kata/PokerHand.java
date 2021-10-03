@@ -37,7 +37,11 @@ public enum PokerHand {
 			player.setRank("STRAIGHT").setWinningCard(player.hand().get(4));
 		}
 	}),
-	FLUSH(player->{});
+	FLUSH(player->{
+		if(player.hand().stream().collect(Collectors.groupingBy(Card::suit)).size() == 1){
+			player.setRank("FLUSH").setWinningCard(player.hand().get(4));
+		}
+	});
 
 	private RankingHands<Player> rankingHands;
 
