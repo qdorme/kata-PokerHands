@@ -14,8 +14,13 @@ class PlayerTest {
 
 	@Test
 	public void shouldReturnHighestCard(){
-		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
-		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().winningCard()).isEqualByComparingTo(Card.H6);
+		assertThat(new Player("Black", createCards("2H 3C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
+		assertThat(new Player("Black", createCards("2H 3C 5C 6H 4H")).processRanking().winningCard()).isEqualByComparingTo(Card.H6);
+	}
+	@Test
+	public void shouldReturnPairRanking(){
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.PAIR);
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().winningCard().value()).isEqualTo(2);
 	}
 
 	private List<Card> createCards(String data){
