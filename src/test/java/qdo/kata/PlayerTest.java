@@ -52,6 +52,11 @@ class PlayerTest {
 		assertThat(new Player("Black", createCards("3H 3C 3S 3D 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FOUR_OF_A_KIND);
 		assertThat(new Player("Black", createCards("3H 3C 3S 3D 2H")).processRanking().winningCard().value()).isEqualTo(3);
 	}
+	@Test
+	public void shouldReturnStraightFlushRanking(){
+		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.STRAIGHT_FLUSH);
+		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().winningCard().value()).isEqualTo(6);
+	}
 
 	private List<Card> createCards(String data){
 		Matcher matcher = cardsPattern.matcher(data);

@@ -56,7 +56,8 @@ public enum PokerHand {
 		if (pairedCards.size() == 1) {
 			player.setRank("FOUR_OF_A_KIND").setWinningCard(pairedCards.get(0).getValue().get(0));
 		}
-	});
+	}),
+	STRAIGHT_FLUSH(player->{});
 
 	private RankingHands<Player> rankingHands;
 
