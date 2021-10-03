@@ -14,6 +14,8 @@ public enum Card {
 	}
 
 	public static Card from(String card) {
+		if(card == null || card.length() != 2)
+			throw new IllegalArgumentException();
 		return Card.valueOf(new StringBuilder(card).reverse().toString().toUpperCase(Locale.ENGLISH));
 	}
 
