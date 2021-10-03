@@ -22,23 +22,25 @@ class PlayerTest {
 		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.PAIR);
 		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().winningCard().value()).isEqualTo(2);
 	}
-
 	@Test
 	public void shouldReturnTwoPairRanking(){
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.TWO_PAIR);
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 4H")).processRanking().winningCard().value()).isEqualTo(5);
 	}
-
 	@Test
 	public void shouldReturnThreeOfAKindRanking(){
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.THREE_OF_A_KIND);
 		assertThat(new Player("Black", createCards("2H 2C 5C 5H 2S")).processRanking().winningCard().value()).isEqualTo(2);
 	}
-
 	@Test
 	public void shouldReturnStraightRanking(){
 		assertThat(new Player("Black", createCards("3H 4C 5C 6H 2S")).processRanking().rank()).isEqualByComparingTo(PokerHand.STRAIGHT);
 		assertThat(new Player("Black", createCards("3H 4C 5C 6H 2S")).processRanking().winningCard().value()).isEqualTo(6);
+	}
+	@Test
+	public void shouldReturnFlushRanking(){
+		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().rank()).isEqualByComparingTo(PokerHand.FLUSH);
+		assertThat(new Player("Black", createCards("3H 4H 5H 6H 2H")).processRanking().winningCard().value()).isEqualTo(6);
 	}
 
 	private List<Card> createCards(String data){

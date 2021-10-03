@@ -36,7 +36,8 @@ public enum PokerHand {
 		if(	IntStream.range(0, 4).map(index -> player.hand().get(index + 1).value() - player.hand().get(index).value()).distinct().sum() == 1){
 			player.setRank("STRAIGHT").setWinningCard(player.hand().get(4));
 		}
-	});
+	}),
+	FLUSH(player->{});
 
 	private RankingHands<Player> rankingHands;
 
