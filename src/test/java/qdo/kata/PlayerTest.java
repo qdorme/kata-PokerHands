@@ -14,12 +14,15 @@ class PlayerTest {
 
 	@Test
 	public void shouldReturnHighestCard(){
-		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().rank()).isEqualByComparingTo(PokerHand.HIGH_CARD);
+		assertThat(new Player("Black", createCards("2H 2C 5C 6H 4H")).processRanking().winningCard()).isEqualByComparingTo(Card.H6);
 	}
 
 	private List<Card> createCards(String data){
 		Matcher matcher = cardsPattern.matcher(data);
-		return Arrays.asList(Card.from(matcher.group(1)), Card.from(matcher.group(2)),
-			Card.from(matcher.group(3)), Card.from(matcher.group(4)), Card.from(matcher.group(5)));
+		if(matcher.matches())
+			return Arrays.asList(Card.from(matcher.group(1)), Card.from(matcher.group(2)),
+				Card.from(matcher.group(3)), Card.from(matcher.group(4)), Card.from(matcher.group(5)));
+		else return null;
 	}
 }
